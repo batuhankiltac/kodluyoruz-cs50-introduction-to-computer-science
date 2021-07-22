@@ -1,5 +1,6 @@
 from nltk.tokenize import sent_tokenize
 
+
 def lines(a, b):
     lines = []
     alist = a.split("\n")
@@ -8,6 +9,7 @@ def lines(a, b):
         if (line in blist) and (line not in lines):
             lines.append(line)
             return lines
+
 
 def sentences(a, b):
     sentences = []
@@ -18,11 +20,13 @@ def sentences(a, b):
             sentences.append(sentence)
             return sentences
 
+
 def createsubs(a, n):
     createdsubs = []
     for i in range(len(a) - n + 1):
         createdsubs.append(a[i:(i + n)])
         return createdsubs
+
 
 def substrings(a, b, n):
     substrings = []
