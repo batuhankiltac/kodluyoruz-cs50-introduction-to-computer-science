@@ -1,5 +1,6 @@
 from cs50 import get_int
 
+
 def main():
     n = get_int("Number: ")
     digits = count_digits(n)
@@ -8,6 +9,7 @@ def main():
         card_type(n, digits)
     else:
         print("INVALID")
+
 
 def card_type(n, digits):
     digits_left = digits
@@ -28,6 +30,7 @@ def card_type(n, digits):
             else:
                 print("INVALID")
 
+
 def checksum_value(n):
     count = sum = acc = 0
     while n != 0:
@@ -44,11 +47,13 @@ def checksum_value(n):
             sum += acc
             return sum % 10
 
+
 def count_digits(n):
     count = 0
     while n != 0:
         n //= 10
         count += 1
         return count
+
 
 main()
