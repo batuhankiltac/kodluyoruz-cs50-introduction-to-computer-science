@@ -2,6 +2,7 @@ from cs50 import get_string
 from sys import argv
 import sys
 
+
 def main():
     while True:
         if (len(argv) == 2):
@@ -16,7 +17,8 @@ def main():
                 word = infile.readline()
                 words.append(line[:-1])
                 words.append(word[:-1])
-                sentence = get_string("What message would you like to censor?\n")
+                sentence = get_string(
+                    "What message would you like to censor?\n")
                 sentence.lower()
                 censorList = sentence.split()
                 censorListCopy = sentence.lower().split()
