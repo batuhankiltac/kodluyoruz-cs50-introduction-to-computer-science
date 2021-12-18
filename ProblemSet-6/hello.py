@@ -1,2 +1,2 @@
-user = input("What is your name ? : ")
-print(f "hello, {user}")
+user = input("What is your name ?: ")
+print(f"hello, {user}")
