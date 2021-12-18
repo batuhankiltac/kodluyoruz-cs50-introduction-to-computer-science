@@ -2,7 +2,6 @@ from cs50 import get_string
 from sys import argv
 import sys
 
-
 def main():
     while True:
         if (len(argv) == 2):
@@ -10,7 +9,6 @@ def main():
             print("Usage: python bleep.py dictionary")
             sys.exit(1)
             break
-        
             inputFile = argv[1]
             infile = open(inputFile, 'r')
             words = []
@@ -22,7 +20,6 @@ def main():
                 sentence.lower()
                 censorList = sentence.split()
                 censorListCopy = sentence.lower().split()
-                
                 for i in range(len(words)):
                     for j in range(len(censorListCopy)):
                         if words[i] == censorListCopy[j]:
