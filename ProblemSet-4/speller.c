@@ -7,25 +7,22 @@
 #include <ctype.h>
 #include "dictionary.h"
 
-typedef struct node
-{
+typedef struct node {
     char word[LENGTH + 1];
     struct node *next;
-} node;
+}
+node;
 
 const unsigned int N = 17000;
 int fsize = 0;
 
 node *table[N];
 
-bool check(const char *word)
-{
+bool check(const char *word) {
     unsigned int hash_code = 0;
     hash_code = hash(word);
-    for (node *tmp = table[hash_code]; tmp != NULL; tmp = tmp->next)
-    {
-        if (strcasecmp(tmp->word, word) == 0)
-        {
+    for (node *tmp = table[hash_code]; tmp != NULL; tmp = tmp->next) {
+        if (strcasecmp(tmp->word, word) == 0) {
             return true;
         }
     }
@@ -34,13 +31,12 @@ bool check(const char *word)
 
 unsigned int
 hash(const char *word)
+
 {
     unsigned int hash = 5381;
     int c;
-    while ((c = *word++))
-    {
-        if (isupper(c))
-        {
+    while ((c = *word++)) {
+        if (isupper(c)) {
             c = c + 32;
         }
         hash = ((hash << 5) + hash) + c;
@@ -48,31 +44,28 @@ hash(const char *word)
     return hash % N;
 }
 
-bool load(const char *dictionary)
-{
+bool load(const char *dictionary) {
     char words[46];
     int hash_code = 0;
+
     FILE *infile = fopen(dictionary, "r");
-    if (infile == NULL)
-    {
+    if (infile == NULL) {
         return false;
     }
-    while (fscanf(infile, "%s", words) != EOF)
-    {
+
+    while (fscanf(infile, "%s", words) != EOF) {
         node *n = malloc(sizeof(node));
-        if (n == NULL)
-        {
+        if (n == NULL) {
             return false;
         }
+
         strcpy(n->word, words);
         hash_code = hash(n->word);
-        if (table[hash_code] == NULL)
-        {
+        if (table[hash_code] == NULL) {
             table[hash_code] = n;
             n->next = NULL;
         }
-        else
-        {
+        else {
             n->next = table[hash_code];
             table[hash_code] = n;
         }
@@ -83,20 +76,16 @@ bool load(const char *dictionary)
 }
 
 unsigned int
-size(void)
-{
+size(void) {
     return fsize;
 }
 
-bool unload(void)
-{
-    for (int i = 0; i < N; i++)
-    {
+bool unload(void) {
+    for (int i = 0; i < N; i++) {
         node *tmp = NULL;
         node *cursor = NULL;
         cursor = table[i];
-        while (cursor != NULL)
-        {
+        while (cursor != NULL) {
             tmp = cursor;
             cursor = cursor->next;
             free(tmp);
