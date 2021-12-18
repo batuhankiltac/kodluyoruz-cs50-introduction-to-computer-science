@@ -1,10 +1,8 @@
 $(document).ready(function () {
     $("button").click(function () {
-
         var stock = $(this).attr("value")
         var action = $(this).data('action');
         var quantity = prompt(`How many shares of ${stock} would you like to ${action}?`, 1);
-
         if (quantity > 0) {
             if (action == 'sell') {
                 alert(`${quantity} shares of ${stock} sold`);
@@ -32,8 +30,6 @@ $(document).ready(function () {
         else {
             alert(`You did not specify your number of shares of ${stock} to ${action}.`);
         }
-
-
         location.reload()
     });
 });
