@@ -10,6 +10,7 @@ def main():
             print("Usage: python bleep.py dictionary")
             sys.exit(1)
             break
+        
             inputFile = argv[1]
             infile = open(inputFile, 'r')
             words = []
@@ -17,11 +18,11 @@ def main():
                 word = infile.readline()
                 words.append(line[:-1])
                 words.append(word[:-1])
-                sentence = get_string(
-                    "What message would you like to censor?\n")
+                sentence = get_string("What message would you like to censor?\n")
                 sentence.lower()
                 censorList = sentence.split()
                 censorListCopy = sentence.lower().split()
+                
                 for i in range(len(words)):
                     for j in range(len(censorListCopy)):
                         if words[i] == censorListCopy[j]:
