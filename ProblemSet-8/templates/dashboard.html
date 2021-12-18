@@ -1,59 +1,112 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block title %} Dashboard {% endblock %} {% block
+main %}
+<h5>Change Password</h5>
 
-{% block title %}
-    Dashboard
-{% endblock %}
+<form
+  action="{{ url_for('change') }}"
+  method="post"
+  id="form-check-password"
+  class="needs-validation"
+  novalidate
+>
+  <div class="form-group">
+    <input
+      autocomplete="off"
+      autofocus
+      class="form-control"
+      name="old_password"
+      placeholder="Current password"
+      type="password"
+      required
+    />
+  </div>
 
-{% block main %}
-    <h5>Change password</h5>
-    <form action="{{ url_for('change') }}" method="post" id="form-check-password" class="needs-validation" novalidate>
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="old_password" placeholder="Current password" type="password" required>
-        </div>
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="new_password" id="password" placeholder="New password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-        </div>
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="confirm_password" id="conf_password" placeholder="Confirm new" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-        </div>
-        <button class="btn btn-primary" type="submit">Change password</button>
-    </form>
-    <br><br>
-    <h5>Add cash</h5>
-    <form action="{{ url_for('add') }}" method="post" class="needs-validation" novalidate>
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="amount" placeholder="Amount" type="number" required>
-        </div>
-        <button class="btn btn-primary" type="submit">Add cash</button>
-    </form>
+  <div class="form-group">
+    <input
+      autocomplete="off"
+      autofocus
+      class="form-control"
+      name="new_password"
+      id="password"
+      placeholder="New password"
+      type="password"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      required
+    />
+  </div>
 
-    <script>
+  <div class="form-group">
+    <input
+      autocomplete="off"
+      autofocus
+      class="form-control"
+      name="confirm_password"
+      id="conf_password"
+      placeholder="Confirm new"
+      type="password"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      required
+    />
+  </div>
 
-        (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-            var forms = document.getElementsByClassName('needs-validation');
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-              }, false);
-            });
-          }, false);
-        })();
+  <button class="btn btn-primary" type="submit">Change password</button>
+</form>
+<br /><br />
+<h5>Add cash</h5>
+<form
+  action="{{ url_for('add') }}"
+  method="post"
+  class="needs-validation"
+  novalidate
+>
+  <div class="form-group">
+    <input
+      autocomplete="off"
+      autofocus
+      class="form-control"
+      name="amount"
+      placeholder="Amount"
+      type="number"
+      required
+    />
+  </div>
 
-    const password = document.getElementById("password");
+  <button class="btn btn-primary" type="submit">Add cash</button>
+</form>
+<script>
+  (function () {
+    "use strict";
+    window.addEventListener(
+      "load",
+      function () {
+        var forms = document.getElementsByClassName("needs-validation");
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      },
+      false
+    );
+  })();
 
-    password.addEventListener("input", function(event) {
-        if (password.validity.patternMismatch) {
-            password.setCustomValidity("Password should be a minimum of 8 characters and include at least one uppercase letter, one lowercase letter and one number.");
-        } else {
-            password.setCustomValidity("");
-        }
-    });
-
-    </script>
+  const password = document.getElementById("password");
+  password.addEventListener("input", function (event) {
+    if (password.validity.patternMismatch) {
+      password.setCustomValidity(
+        "Password should be a minimum of 8 characters and include at least one uppercase letter, one lowercase letter and one number."
+      );
+    } else {
+      password.setCustomValidity("");
+    }
+  });
+</script>
 {% endblock %}
